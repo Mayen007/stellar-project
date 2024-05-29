@@ -6,6 +6,7 @@ import logging
 from config import Config
 from logging.handlers import SMTPHandler, RotatingFileHandler
 from flask_mail import Mail, Message
+import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
