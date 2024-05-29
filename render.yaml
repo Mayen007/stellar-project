@@ -1,0 +1,5 @@
+services:
+  - name: web
+    type: web
+    env: python
+    startCommand: gunicorn -b 0.0.0.0:$PORT app:app

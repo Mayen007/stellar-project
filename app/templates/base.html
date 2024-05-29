@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link href="{{ url_for('static', filename='styles/styles.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='img/logo.PNG') }}" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    {% if title %}
+    <title>{{ title }} - Crost Storm</title>
+    {% else %}
+    <title>Welcome to Crost Storm</title>
+    {% endif %}
+</head>
+
+<body>
+    {% if request.endpoint not in ['login', 'signup', 'edit_profile'] %}
+    <header class="sticky-top shadow bg-body-tertiary">
+        {% block nav %}
+        <div class="container">
+            <div class="d-flex justify-content-between py-1">
+                <a class="d-flex align-items-center text-decoration-none" href="{{ url_for('index')}}">
+                    <img alt="logo" class="img-fluid" height="auto" src="../static/img/logo.PNG" width="40vw">
+                    <h4 class="text-uppercase text-black brand mx-2 fw-bold">crost storm</h4>
+                </a>
+                <div class="navbar navbar-expand-sm">
+                    <div>
+                        <button class="navbar-toggler fs-6 p-0 border-0" data-bs-target="#collapsibleNavbar"
+                            data-bs-toggle="collapse" type="button">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mx-2">
+                                    <a class="link-body-emphasis" href="ticketing"><i class="fa fa-ticket"
+                                            title="Tickets"></i></a>
+                                </div>
+                                <div class="mx-2 dropdown">
+                                    <a aria-expanded="false" class="link-body-emphasis dropdown-toggle"
+                                        data-bs-toggle="dropdown" href="#" id="userDropdown" target="_self"><i
+                                            class="fa fa-user" title="Account"></i>
+                                    </a>
+                                    <div aria-labelledby="userDropdown" class="dropdown-menu">
+                                        {% if current_user.is_anonymous %}
+                                        <a class="dropdown-item" href="{{ url_for('login') }}">Login</a>
+                                        {% else %}
+                                        <a class="dropdown-item"
+                                            href="{{ url_for('user', username=current_user.username) }}">Profile</a>
+                                        <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="notification-badge mx-2">
+                                    <a class="link-body-emphasis" href="notifications" rel="noopener" target="_self"><i
+                                            class="fa fa-bell" title="Notifications"></i></a>
+                                    <span class="badge">1</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- navbar section -->
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <div class="container">
+            <button class="navbar-toggler fs-6 p-0 border-0" data-bs-target="#collapsiblenavbar"
+                data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsiblenavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Discussions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CineScope</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Trailers</a>
+                    </li>
+                </ul>
+                <!-- searchbar -->
+                <form class="d-flex ms-auto" role="search">
+                    <input aria-label="Search" class="form-control rounded py-0" placeholder="Search..."
+                        type="search" />
+                    <button class="btn btn-outline-primary  my-2 my-sm-0" title="Search" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    {% endblock %}
+    {% endif %}
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+    {% for message in messages %}
+    <div class="alert alert-success m-auto alert-dismissible fade show py-2 align-items-center" id="liveAlertBtn"
+        role="alert">
+        <p class="text-center">{{ message }}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+
+    {% if request.endpoint not in ['login', 'signup', 'edit_profile'] %}
+    <footer class="bg-light text-black">
+        {% block footer %}
+        <!-- primary footer -->
+        <div class="container container-sm pt-4">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-3 col-lg">
+                    <div class="mt-3">
+                        <h5>Contact</h5>
+                        <a class="nav-link mt-2" href="https://www.google.com/maps?q=4.8496667,31.6095" rel="noopener"
+                            target="_blank" title="Home"><i class="fa fa-home fa-lg"></i><span class="mx-2">123 Unity
+                                Avenue,
+                                Juba.</span></a>
+                        <a class="nav-link mt-3" href="mailto:info@croststorm.com" title="Mail"><i
+                                class="fa fa-envelope fa-lg"></i><span class="mx-2">info@croststorm.com</span></a>
+                        <a class="nav-link my-3" href="tel:+21198635372" title="Cellphone"><i
+                                class="fa fa-phone fa-lg"></i><span class="mx-2">Call
+                                Us</span></a>
+                        <p class="nav-link" href="#" title="Fax"><i class="fa fa-print fa-lg"></i><span
+                                class="mx-2">+21198635372</span></p>
+
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3 col-lg">
+                    <div>
+                        <h5 class="mb-4 mt-3">Our partners</h5>
+                        <div class="mb-4">
+                            <img alt="Netflix logo" class="logo-image img-fluid" src="../static/img/netflixlogo.jpg" />
+                            <a class="text-decoration-none text-black" href="https://www.netflix.com/" rel="noopener"
+                                target="_blank"><span class="mx-2">Netflix</span></a>
+                        </div>
+                        <div class="mb-4">
+                            <img alt="paramount plus logo" class="logo-image img-fluid"
+                                src="{{ url_for('static', filename='img/paramount-plus-logo-1.png')}}" /><a
+                                class="text-decoration-none text-black" href="https://www.paramountplus.com/"
+                                rel="noopener" target="_blank"><span class="mx-2">Paramount<sup
+                                        class="fw-bold">+</sup></span></a>
+                        </div>
+                        <div class="mb-4">
+                            <img alt="Prime video logo" class="logo-image img-fluid"
+                                src="{{ url_for('static', filename='img/primelogo.jpg') }}" />
+                            <a class="text-decoration-none text-black" href="https://www.primevideo.com" rel="noopener"
+                                target="_blank"><span class="mx-2">Prime Video</span></a>
+                        </div>
+                        <div class="mb-4">
+                            <img alt="apple tv logo" class="logo-image img-fluid"
+                                src="{{ url_for('static', filename='img/apple-tv.png') }}" /><a
+                                class="text-decoration-none text-black" href="https://tv.apple.com" rel="noopener"
+                                target="_blank"><span class="mx-2">Apple tv</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 col-sm-6 col-lg">
+                    <div class="mt-3">
+                        <h5>About us</h5>
+                        <div class="d-flex flex-column">
+                            <a class="text-decoration-none text-secondary" href="#">Our Story</a>
+                            <a class="text-decoration-none text-secondary mt-1" href="#">Team</a>
+                            <a class="text-decoration-none text-secondary mt-1" href="#">Partnerships</a>
+                            <a class="text-decoration-none text-secondary mt-1" href="#">Blog</a>
+                            <a class="text-decoration-none text-secondary mt-1" href="#">Join us</a>
+                        </div>
+                    </div>
+                    <div class="mt-4 d-flex flex-column">
+                        <h5>Get Help</h5>
+                        <a class="text-decoration-none text-secondary" href="#"> FAQ</a>
+                        <a class="text-decoration-none text-secondary mt-1" href="#">Customer Support</a>
+                        <a class="text-decoration-none text-secondary mt-1" href="#">Privacy</a>
+                        <a class="text-decoration-none text-secondary mt-1" href="#">Terms and Conditions</a>
+                        <a class="text-decoration-none text-secondary mt-1" href="#">Report an issue</a>
+                    </div>
+                    <div class="mt-4 mb-3 d-flex flex-column">
+                        <h6>Discover More</h6>
+                        <a class="text-decoration-none text-secondary" href="#">Accessibility</a>
+                        <a class="text-decoration-none text-secondary mt-1" href="#">Featured Articles</a>
+                        <a class="text-decoration-none text-secondary mt-1" href="#">Special offers</a>
+                        <a class="text-decoration-none text-secondary mt-1" href="#">Our Community</a>
+                        <a class="text-decoration-none text-secondary mt-1" href="#">Newsletter</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 col-lg mb-4">
+                    <div class="mb-sm-4 mt-3">
+                        <h5>Find us</h5>
+                        <div class="mt-3 d-flex">
+                            <a class="link-body-emphasis" href="https://www.reddit.com/" rel="noopener" target="_blank"
+                                title="Reddit"><i class="fa fa-reddit fa-lg"></i></a>
+                            <a class="link-body-emphasis ms-3" href="https://www.twitter.com/" rel="noopener"
+                                target="_blank" title="Twitter"><i class="fa fa-twitter fa-lg"></i></a>
+                            <a class="link-body-emphasis ms-3" href="https://www.instagram.com" rel="noopener"
+                                target="_blank" title="Instagram"><i class="fa fa-instagram fa-lg "></i></a>
+                            <a class="link-body-emphasis ms-3" href="https://telegram.org/" rel="noopener"
+                                target="_blank" title="Telegram"><i class="fa fa-telegram fa-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- secondary footer -->
+        <section>
+            <div class="container">
+                <div class="row flex-column-reverse flex-md-row border-top">
+                    <div class="col-12 col-md-4 pt-2">
+                        <p>
+                            &copy; 2023
+                            <span class="h6">Crost Storm&trade;</span> All rights reserved.
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-8 col-lg">
+                        <ul class="nav">
+                            <li><a class="nav-link text-secondary" href="#">Home</a></li>
+                            <li>
+                                <span class="nav-link link-body-emphasis">|</span>
+                            </li>
+                            <li><a class="nav-link text-secondary" href="#">Movies</a></li>
+                            <li>
+                                <span class="nav-link link-body-emphasis">|</span>
+                            </li>
+                            <li><a class="nav-link text-secondary" href="#">Reviews</a></li>
+                            <li>
+                                <span class="nav-link link-body-emphasis">|</span>
+                            </li>
+                            <li><a class="nav-link text-secondary" href="#">Discussions</a></li>
+                            <li>
+                                <span class="nav-link link-body-emphasis">|</span>
+                            </li>
+                            <li class="nav-item"><a class="nav-link text-secondary" href="#">CineScope</a></li>
+                            <li><span class="nav-link link-body-emphasis">|</span></li>
+                            <li><a class="nav-link text-secondary" href="#">Events</a></li>
+                            <li><span class="nav-link link-body-emphasis">|</span></li>
+                            <li><a class="nav-link text-secondary" href="#">Trailers</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock %}
+    </footer>
+    {% endif %}
+
+    <script crossorigin="anonymous" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="m-auto align-items-center justify-content-center">
+    <header class="text-center">
+        <img alt="" class="thumbnail" height="auto" src="{{ url_for('static', filename='img/logo.PNG') }}"
+            width="170px">
+        <h1 class="my-4 display-5">Welcome back!</h1>
+    </header>
+    <section class=" col-md-3 m-auto">
+        <form action="" class="p-4 p-md-4 border rounded-4 bg-body-tertiary m-auto shadow-lg" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="form-floating">
+                <p>{{ form.username.label }}</p>
+                <p>{{ form.username(size=32, class='form-control') }}</p>
+                {% for error in form.username.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-floating">
+                <p>{{ form.password.label }}</p>
+                <p>{{ form.password(size=32, class='form-control') }}</p>
+                {% for error in form.password.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="checkbox">
+                <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+            </div>
+            <p>{{ form.submit(class='w-100 btn btn-success') }}</p>
+            <p>
+                Forgot Your Password?
+                <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+            </p>
+            <p class="text-body-secondary mt-3">Don't have an account? <a href="{{ url_for('signup') }}"
+                    class="text-decoration-none">Sign up!</a></p>
+        </form>
+    </section>
+</main>
+
+{% endblock %}

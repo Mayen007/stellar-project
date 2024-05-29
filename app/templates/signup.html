@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="h-100">
+    <div class="container col-xl-10 col-xxl-8 px-3">
+        <div class="row align-items-center g-lg-5 pt-1">
+            <div class="col-lg-7 text-center text-lg-start">
+                <h1 class="display-2 fw-bold lh-1 text-body-emphasis mb-3">CROST STORM</h1>
+                <p class="col-lg-10 fs-4">Get the scoop on all things movies! Sign up for exclusive updates,
+                    behind-the-scenes
+                    content, and special offers. Don't miss out - join now!</p>
+            </div>
+            <div class="col-md-10 mx-auto col-lg-5">
+                <form action="" class="p-2 p-md-5 border rounded-3 bg-body-tertiary" method="post">
+                    {{ form.hidden_tag() }}
+                    <p>
+                        {{ form.username.label }}<br>
+                        {{ form.username(size=32, class='form-control') }}<br>
+                    </p>
+                    <p>
+                        {{ form.email.label }}<br>
+                        {{ form.email(size=64, class='form-control') }}<br>
+                    </p>
+                    <p>
+                        {{ form.password.label }}<br>
+                        {{ form.password(size=32, class='form-control') }}<br>
+                    </p>
+                    <p>
+                        {{ form.password2.label }}<br>
+                        {{ form.password2(size=32, class='form-control') }}<br>
+                    </p>
+                    <p>{{ form.submit(class='w-100 btn btn-primary mb-3') }}</p>
+                    <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
+                    <p class="text-secondary">Already have an account? <a class="text-decoration-none"
+                                                                          href="{{ url_for('login') }}">Login</a>
+                    </p>
+                    <hr class="my-4">
+                    <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
+                    <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
+                        <i class="bi bi-twitter"></i>
+                        Sign up with Twitter
+                    </button>
+                    <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
+                        <i class="bi bi-facebook"></i>
+                        Sign up with Facebook
+                    </button>
+                    <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
+                        <i class="bi bi-github"></i>
+                        Sign up with GitHub
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

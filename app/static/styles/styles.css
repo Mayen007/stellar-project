@@ -1,0 +1,88 @@
+.brand {
+  font-weight: bold;
+}
+
+.small-image {
+  width: 90px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+}
+
+.logo-image {
+  width: 60px;
+  height: auto;
+}
+
+
+.notification-badge {
+  position: relative;
+  display: inline-block;
+}
+
+.notification-badge .badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 6px;
+  font-size: 12px;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.hero-section {
+  background: radial-gradient(circle at top left, #ffffff 40%, #f7cac9 50%, #a6e4d0 60%, #f9d9e2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #333;
+}
+
+.content {
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.content p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #4e54c8;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #3e46a8;
+}
+.edit-profile{
+   display: flex;
+   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

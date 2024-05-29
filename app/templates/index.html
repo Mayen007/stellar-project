@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+
+{% block content %}
+<svg class="d-none" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="cpu-fill" viewBox="0 0 16 16">
+        <path d="M6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+        <path
+                d="M5.5.5a.5.5 0 0 0-1 0V2A2.5 2.5 0 0 0 2 4.5H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2A2.5 2.5 0 0 0 4.5 14v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14a2.5 2.5 0 0 0 2.5-2.5h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14A2.5 2.5 0 0 0 11.5 2V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5zm1 4.5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3A1.5 1.5 0 0 1 6.5 5z"/>
+    </symbol>
+    <symbol id="toggles2" viewBox="0 0 16 16">
+        <path d="M9.465 10H12a2 2 0 1 1 0 4H9.465c.34-.588.535-1.271.535-2 0-.729-.195-1.412-.535-2z"/>
+        <path
+                d="M6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm.535-10a3.975 3.975 0 0 1-.409-1H4a1 1 0 0 1 0-2h2.126c.091-.355.23-.69.41-1H4a2 2 0 1 0 0 4h2.535z"/>
+        <path d="M14 4a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"/>
+    </symbol>
+    <symbol id="tools" viewBox="0 0 16 16">
+        <path
+                d="M1 0L0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z"/>
+    </symbol>
+</svg>
+
+<div class="hero-section">
+    <div class="content">
+        <h1>Unleash the Magic of Entertainment with Crost Storm</h1>
+        <p>Experience the thrill of blockbuster movies, discover hidden gems, and find your next cinematic adventure—all
+            in one place.</p>
+        <a class="cta-button" href="#contact">Get Started</a>
+    </div>
+</div>
+<h1>Hi, {{ current_user.username }}!</h1>
+<!--    {% for post in posts %}-->
+<!--    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>-->
+<!--    {% endfor %}-->
+<!-- main section -->
+<main class="container">
+    <div class="container px-4 py-5" id="hanging-icons">
+        <h2 class="pb-2 border-bottom">Featured Entertainment</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="col d-flex align-items-start">
+                <div
+                        class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    <svg class="bi" height="1em" width="1em">
+                        <use xlink:href="#toggles2"/>
+                    </svg>
+                    <img alt="" class="bi" height="1em" src="../static/img/icons8-film-reel-100.png" width="1em">
+                </div>
+                <div>
+                    <h3 class="fs-2 text-body-emphasis">Movie Reel Madness</h3>
+                    <p>Explore the latest movies, trailers, and reviews. Dive into the world of cinema with our curated
+                        selection of films.</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <div
+                        class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    <svg class="bi" height="1em" width="1em">
+                        <use xlink:href="#cpu-fill"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="fs-2 text-body-emphasis">Recommendations</h3>
+                    <p>Discover your next favorite movie or show based on your preferred genre. Get personalized
+                        recommendations
+                        tailored just for you.</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <div
+                        class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    <svg class="bi" height="1em" width="1em">
+                        <use xlink:href="#tools"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="fs-2 text-body-emphasis">Tools for Entertainment</h3>
+                    <p>Discover useful tools and resources for enhancing your entertainment experience. From streaming
+                        services
+                        to event trackers, we've got it all.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal text-body-emphasis">Membership Plans</h1>
+        <p class="fs-5 text-body-secondary">Choose the perfect membership plan to unlock exclusive entertainment content
+            and features.</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Basic</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$0<small class="text-body-secondary fw-light">/mo</small>
+                    </h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Access to limited content</li>
+                        <li>Standard quality streaming</li>
+                        <li>Ad-supported</li>
+                        <li>Limited device support</li>
+                    </ul>
+                    <button class="w-100 btn btn-outline-primary" type="button">Sign up for free</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Premium</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$15<small class="text-body-secondary fw-light">/mo</small>
+                    </h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Unlimited access to all content</li>
+                        <li>HD quality streaming</li>
+                        <li>No ads</li>
+                        <li>Unlimited device support</li>
+                    </ul>
+                    <button class="w-100 btn btn-primary" type="button">Get started</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                <div class="card-header py-3 text-bg-primary border-primary">
+                    <h4 class="my-0 fw-normal">VIP</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$29<small class="text-body-secondary fw-light">/mo</small>
+                    </h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Exclusive access to premium content</li>
+                        <li>4K Ultra HD streaming</li>
+                        <li>No ads</li>
+                        <li>Premium support</li>
+                    </ul>
+                    <button class="w-100 btn btn-primary" type="button">Get VIP Access</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="display-6 text-center mb-4 mt-5">Compare plans</h2>
+    <div class="table-responsive mb-5">
+        <table class="table text-center">
+            <thead>
+            <tr>
+                <th style="width: 34%;"></th>
+                <th style="width: 22%;">Basic</th>
+                <th style="width: 22%;">Premium</th>
+                <th style="width: 22%;">VIP</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th class="text-start" scope="row">Public Access</th>
+                <td><i class="bi bi-x-lg"></i></td>
+                <td><i class="bi bi-check-lg"></i></td>
+                <td><i class="bi bi-check-lg"></i></td>
+            </tr>
+            <tr>
+                <th class="text-start" scope="row">Private Access</th>
+                <td></td>
+                <td><i class="bi bi-x-lg"></i></td>
+                <td><i class="bi bi-check-lg"></i></td>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <th class="text-start" scope="row">Full Permissions</th>
+                <td><i class="bi bi-x-lg"></i></td>
+                <td><i class="bi bi-check-lg"></i></td>
+                <td><i class="bi bi-check-lg"></i></td>
+            </tr>
+            <tr>
+                <th class="text-start" scope="row">Sharing Capabilities</th>
+                <td></td>
+                <td><i class="bi bi-check-lg"></i></td>
+                <td><i class="bi bi-check-lg"></i></td>
+            </tr>
+            <tr>
+                <th class="text-start" scope="row">Unlimited Members</th>
+                <td></td>
+                <td><i class="bi bi-check-lg"></i></td>
+                <td><i class="bi bi-check-lg"></i></td>
+            </tr>
+            <tr>
+                <th class="text-start" scope="row">Extra Security</th>
+                <td></td>
+                <td><i class="bi bi-check-lg"></i></td>
+                <td><i class="bi bi-check-lg"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- CTA Section -->
+    <section class="my-4 text-center bg-primary text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <h2 class="display-4 mb-4">Discover the Magic of Cinema</h2>
+                    <p class="lead">Join our vibrant community of movie lovers and embark on a cinematic journey like no
+                        other.
+                        Get ready for exclusive content, interactive discussions, and more.</p>
+                    <a class="btn btn-outline-light mt-4" href="#signup">Get Your Popcorn Ready</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}
