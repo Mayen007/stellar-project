@@ -1,57 +1,50 @@
 {% extends "base.html" %}
 
 {% block content %}
-<main class="h-100">
+<main class="d-flex align-items-center">
     <div class="container col-xl-10 col-xxl-8 px-3">
-        <div class="row align-items-center g-lg-5 pt-1">
-            <div class="col-lg-7 text-center text-lg-start">
-                <h1 class="display-2 fw-bold lh-1 text-body-emphasis mb-3">CROST STORM</h1>
+        <div class="row align-items-center pt-1">
+            <div class="col-lg-7 text-center text-lg-start d-none d-lg-block">
+                <h1 class="display-2 fw-bold lh-1 text-primary mb-3">CROST STORM</h1>
                 <p class="col-lg-10 fs-4">Get the scoop on all things movies! Sign up for exclusive updates,
-                    behind-the-scenes
-                    content, and special offers. Don't miss out - join now!</p>
+                    behind-the-scenes content, and special offers. Don't miss out - join now!</p>
             </div>
             <div class="col-md-10 mx-auto col-lg-5">
-                <form action="" class="p-2 p-md-5 border rounded-3 bg-body-tertiary" method="post">
+                <form action="" class="p-4 rounded-4 bg-light shadow mt-4" method="post">
                     {{ form.hidden_tag() }}
-                    <p>
-                        {{ form.username.label }}<br>
-                        {{ form.username(size=32, class='form-control') }}<br>
-                    </p>
-                    <p>
-                        {{ form.email.label }}<br>
-                        {{ form.email(size=64, class='form-control') }}<br>
-                    </p>
-                    <p>
-                        {{ form.password.label }}<br>
-                        {{ form.password(size=32, class='form-control') }}<br>
-                    </p>
-                    <p>
-                        {{ form.password2.label }}<br>
-                        {{ form.password2(size=32, class='form-control') }}<br>
-                    </p>
-                    <p>{{ form.submit(class='w-100 btn btn-primary mb-3') }}</p>
-                    <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
-                    <p class="text-secondary">Already have an account? <a class="text-decoration-none"
-                                                                          href="{{ url_for('login') }}">Login</a>
-                    </p>
-                    <hr class="my-4">
+                    <div class="mb-3">
+                        {{ form.username.label(class="form-label") }}
+                        {{ form.username(size=32, class='form-control') }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.email.label(class="form-label") }}
+                        {{ form.email(size=64, class='form-control') }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.password.label(class="form-label") }}
+                        {{ form.password(size=32, class='form-control') }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.password2.label(class="form-label") }}
+                        {{ form.password2(size=32, class='form-control') }}
+                    </div>
+                    <button type="submit" class="w-100 btn btn-primary btn-lg mb-3">{{ form.submit.label.text }}</button>
+                    <small class="text-body-secondary d-block mb-3">By clicking Sign up, you agree to the terms of use.</small>
+                    <p class="text-secondary">Already have an account? <a class="text-decoration-none" href="{{ url_for('login') }}">Login</a></p>
+                    <hr class="my-2">
                     <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
-                    <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
-                        <i class="bi bi-twitter"></i>
-                        Sign up with Twitter
+                    <button class="w-100 py-2 mb-2 btn btn-outline-info rounded-3" type="button">
+                        <i class="bi bi-windows"></i> Sign up with Microsoft
                     </button>
-                    <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
-                        <i class="bi bi-facebook"></i>
-                        Sign up with Facebook
+                    <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="button">
+                        <i class="bi bi-facebook"></i> Sign up with Facebook
                     </button>
-                    <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
-                        <i class="bi bi-github"></i>
-                        Sign up with GitHub
+                    <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3" type="button">
+                        <i class="bi bi-google"></i> Sign up with Google
                     </button>
                 </form>
             </div>
         </div>
     </div>
 </main>
-
 {% endblock %}

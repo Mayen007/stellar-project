@@ -1,36 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-<main class="m-auto align-items-center justify-content-center">
-    <header class="text-center">
+<main class="d-flex flex-column align-items-center justify-content-center min-vh-100">
+    <header class="text-center mb-4">
         <img alt="" class="thumbnail" height="auto" src="{{ url_for('static', filename='img/logo.PNG') }}"
             width="170px">
         <h1 class="my-4 display-5">Welcome back!</h1>
     </header>
-    <section class=" col-md-3 m-auto">
-        <form action="" class="p-4 p-md-4 border rounded-4 bg-body-tertiary m-auto shadow-lg" method="post" novalidate>
+    <section class="col-12 col-md-6 col-lg-4">
+        <form action="" class="p-4 rounded-4 bg-body-tertiary m-auto shadow-lg" method="post" novalidate>
             {{ form.hidden_tag() }}
-            <div class="form-floating">
+            <div class="form-floating mb-3">
                 <p>{{ form.username.label }}</p>
                 <p>{{ form.username(size=32, class='form-control') }}</p>
                 {% for error in form.username.errors %}
                 <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-3">
                 <p>{{ form.password.label }}</p>
                 <p>{{ form.password(size=32, class='form-control') }}</p>
                 {% for error in form.password.errors %}
                 <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>
-            <div class="checkbox">
-                <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+            <div class="form-check mb-3">
+                {{ form.remember_me(class="form-check-input") }}
+                {{ form.remember_me.label(class="form-check-label") }}
             </div>
-            <p>{{ form.submit(class='w-100 btn btn-success') }}</p>
+            <button type="submit" class="w-100 btn btn-success mb-3">{{ form.submit.label.text }}</button>
             <p>
-                Forgot Your Password?
-                <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+                <a href="{{ url_for('reset_password_request') }}" class="text-decoration-none">Forgot Your Password?</a>
             </p>
             <p class="text-body-secondary mt-3">Don't have an account? <a href="{{ url_for('signup') }}"
                     class="text-decoration-none">Sign up!</a></p>
